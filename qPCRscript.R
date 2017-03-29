@@ -2,11 +2,12 @@
 
 #install and load libraries and functions
 install.packages("data.table")
-library(data.table)
+install.packages("ggplot2")
 install.packages("Hmisc")
+library(data.table)
 library(Hmisc)
 library(ggplot2)
-install.packages("ggplot2")
+
 
 MakeDCQ <- function( MyData, AvgCq=AvgCq, Ref, GOI="GOI" ) {
   input <- MyData[ MyData$GeneID == GOI ,]
@@ -25,7 +26,7 @@ MakeDCQ <- function( MyData, AvgCq=AvgCq, Ref, GOI="GOI" ) {
   return( data.frame( cbind( input, DeltaCQ, DeltaSD ) ))
 }
 
-#upload data and check
+#upload data and check, #make sure to change file path for current analysis 
 qPCR<-read.csv("C:/Users/Savvas Constantinou/Documents/PhD/Research/Scn4aa MO project/qPCR data/qPCRniki.csv",stringsAsFactors=F)
 head(qPCR)
 unique(qPCR$Gene)
@@ -46,7 +47,8 @@ MyData=AvgCq
 #calculate deltaCq values and delta SD
 DCq1 <- MakeDCQ( AvgCq, AvgCq, "Ref1" )
 DCq1
-DCq2 <- MakeDCQ( AvgCq, AvgCq, "Ref2" )
+#can use below code if wanting the second Ref gene
+#DCq1 <- MakeDCQ( AvgCq, AvgCq, "Ref2" )
 
 #calculate DDCq. 
 #specify control DCq value
