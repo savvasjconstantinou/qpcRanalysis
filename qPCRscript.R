@@ -27,7 +27,7 @@ MakeDCQ <- function( MyData, AvgCq=AvgCq, Ref, GOI="GOI" ) {
 }
 
 #upload data and check, #make sure to change file path for current analysis 
-qPCR<-read.csv("C:/Users/Savvas Constantinou/Documents/PhD/Research/Scn4aa MO project/qPCR data/qPCRniki.csv",stringsAsFactors=F)
+qPCR<-read.csv("C:/Users/Savvas Constantinou/Downloads/sjc 3-3-17 EO, scn4aa Bact, rps11.csv",stringsAsFactors=F)
 head(qPCR)
 unique(qPCR$Gene)
 unique(qPCR$Sample)
@@ -74,14 +74,17 @@ DDCq$Sample <-factor(DDCq$Sample, levels=c("MOC","MOL","MOH"))
 #plot the data
 p <- ggplot(data=DDCq, aes(x=Sample, y=RelQuant, fill=Sample))
 p + geom_col(position=position_dodge()) +
+  #change the size and color of text to make more legable (changed for poster, defaults may be good for papers)
+  theme(title=element_text(size=20), axis.text = element_text(size=18,color="black"), axis.title = element_text(size=18), 
+        legend.title = element_text(size=14),legend.text = element_text(size=14)) +
   #add errorbars
   geom_errorbar( aes(ymax=RelQuant + UpperError,ymin=RelQuant - LowerError), width=0.2, position=position_dodge(0.9))+
   #add labels
-  ggtitle("Relative Abundance of scn4aa (compared to B-actin) after MO treatment") +
+  ggtitle(expression(paste("Relative Abundance of ", italic("scn4aa"), "(compared to B-actin) after MO treatment"))) +
   xlab("Fish") +
   ylab("Relative Expression") +
   #change title of legend
   scale_fill_hue(name="MO concentration 
-(mg MO/kg fish)", # Legend label, use darker colors
-                breaks=c("MOC", "MOL","MOH"),
-                labels=c("Control MO; 20.0", "scn4aa SB; 12.5 (low)","scn4aa SB; 20.0 (high)"))
+  (mg MO/kg fish)", # Legend label, use darker colors
+                 breaks=c("MOC", "MOL","MOH"),
+                 labels=c("Control MO; 20.0", "scn4aa SB; 12.5 (low)","scn4aa SB; 20.0 (high)"))
