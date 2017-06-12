@@ -14,7 +14,7 @@ C04	26.22798	bactin	Ref1	other	exp1
 C05	25.29998	bactin	Ref1	other	exp1
 C06	25.47763	bactin	Ref1	other	exp1
 D04	22.14269	bactin	Ref1	MOC	control
-D05	21.6308	bactin	Ref1	MOC	control
-D06	20.82959	bactin	Ref1	MOC	control
+D05	21.6308	bactin Ref1	MOC	control
+D06	20.82959 bactin	Ref1	MOC	control
 
 The graph will need to be changed to have correct titles and call particular variables of interest on a case by case instance.
